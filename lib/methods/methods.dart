@@ -5,17 +5,6 @@ import 'package:http/http.dart' as http;
 
 class getData {
   Future<List<dynamic>> getGames(String liga) async {
-    /*Response response = await Dio().get("https://venados.dacodes.mx/api/games",
-        options: Options(
-          headers: {"Accept": "application/json"},
-          sendTimeout: 1000,
-          receiveTimeout: 1000,
-        ));*/
-
-//    var datos = response.toString();
-
-    /*var jsonObject = (jsonDecode(datos) as List).cast<Map<String, dynamic>>();
-    var result = jsonObject.map((e) => e == null ? null : games.map(e));*/
 
     var response = await http.get(
         Uri.encodeFull("https://venados.dacodes.mx/api/games"),
@@ -46,4 +35,67 @@ class getData {
 
     return dataCopa.toList();
   }
+
+  Future<List<dynamic>> getStatistics() async {
+
+    var response = await http.get(
+        Uri.encodeFull("https://venados.dacodes.mx/api/statistics"),
+        headers: {"Accept": "application/json"});
+
+    Map<String, dynamic> map = json.decode(response.body);
+
+    List<dynamic> data = map["data"]["statistics"];
+
+/*    List<dynamic> dataCopa = List<dynamic>();
+
+    switch(liga){
+      case 'Ascenso MX':
+        for(var item in data){
+          if(item["league"] != "Copa MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+      case 'Copa MX':
+        for(var item in data){
+          if(item["league"] != "Ascenso MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+    }*/
+    return data.toList();
+  }
+
+  Future<List<dynamic>> getPlayers() async {
+
+    var response = await http.get(
+        Uri.encodeFull("https://venados.dacodes.mx/api/players"),
+        headers: {"Accept": "application/json"});
+
+    Map<String, dynamic> map = json.decode(response.body);
+
+    List<dynamic> data = map["data"]["team"]["forwards"];
+
+/*    List<dynamic> dataCopa = List<dynamic>();
+
+    switch(liga){
+      case 'Ascenso MX':
+        for(var item in data){
+          if(item["league"] != "Copa MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+      case 'Copa MX':
+        for(var item in data){
+          if(item["league"] != "Ascenso MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+    }*/
+    return data.toList();
+  }
+
 }

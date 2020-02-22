@@ -1,5 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:venados_test/players.dart';
+import 'package:venados_test/statistics.dart';
 
 import 'ascenso_mx.dart';
 import 'copa_mx.dart';
@@ -38,9 +42,10 @@ class _PrincipalScreenPageState extends State<PrincipalScreenPage> {
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
-
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
   }
 
   @override
@@ -138,19 +143,19 @@ Widget screen (BuildContext context, int option){
                       indicatorSize: TabBarIndicatorSize.label,
                       indicator: BoxDecoration(
                           borderRadius: BorderRadius.horizontal(),
-                          color: Colors.white),
-                      indicatorColor: Colors.black,
-                      labelColor: Colors.black87,
+                          color: Colors.transparent),
+                      indicatorColor: Colors.transparent,
+                      labelColor: Colors.black,
                       tabs: [
                         Tab(
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.transparent,
                                 borderRadius: BorderRadius.horizontal(),
                                 border: Border.all(color: Colors.green,
-                                    width: 2)),
+                                    width: 4)
+                               ),
                             child: Align(
-                              alignment: Alignment.center,
                               child: Text("COPA MX"),
                             ),
                           ),
@@ -158,12 +163,12 @@ Widget screen (BuildContext context, int option){
                         Tab(
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.transparent,
                                 borderRadius: BorderRadius.horizontal(),
                                 border: Border.all(color: Colors.green,
-                                    width: 2)),
+                                    width: 4)
+                                ),
                             child: Align(
-                              alignment: Alignment.center,
                               child: Text("ASCENSO MX"),
                             ),
                           ),
@@ -171,30 +176,57 @@ Widget screen (BuildContext context, int option){
                       ],
                     ),
                   ),
-                  pinned: true,
+                  pinned: false,
+                  floating: false,
                 ),
               ];
             },
-            body: new TabBarView(children: [CopaMx(), AscensoMx()]),
+            body: new TabBarView(
+                children: [CopaMx(), AscensoMx()
+                ]
+            ),
           )
       );
       break;
     case 2: //Estadísticas
-      return new Scaffold(
-        appBar: new AppBar(
-          leading: Icon(Icons.ac_unit),
-          iconTheme: new IconThemeData(color: Colors.green),
-          backgroundColor: Colors.transparent,
-        ),
-        body: Center(
-          child: Text('HOLA'),
-        ),
+      return CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            iconTheme: new IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            floating: false,
+            pinned: false,
+          ),
+          SliverFillRemaining(
+            child: Container(
+              child: new Statistics(),
+            )
+          )
+        ],
+      );
+      break;
+    case 3:
+      return CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            iconTheme: new IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            floating: false,
+            pinned: false,
+            title: Text('Jugadores', style: TextStyle(color: Colors.black),),
+          ),
+          SliverFillRemaining(
+              child: Container(
+                child: new Players(),
+              )
+          )
+        ],
       );
       break;
     default: //Pantalla por defecto
       return new AppBar(
         iconTheme: new IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white
       );
       break;
   }
