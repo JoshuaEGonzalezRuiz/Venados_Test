@@ -15,8 +15,8 @@ Ejercicio de prueba para DaCodes.
   void main() => runApp(PrincipalScreen());
   ```
 ## Crear el archivo principal_screen.dart y agregar lo siguiente
-
-`import 'package:flutter/material.dart';
+```dart
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:venados_test/players.dart';
@@ -29,7 +29,6 @@ import 'methods/methods.dart';
 int opcion;
 
 class PrincipalScreen extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,7 +57,6 @@ class _PrincipalScreenPageState extends State<PrincipalScreenPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
@@ -271,4 +269,5 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
     return false;
   }
-}`
+}
+```
