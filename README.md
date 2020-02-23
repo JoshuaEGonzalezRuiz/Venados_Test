@@ -19,7 +19,9 @@ dependencies:
 ```
 4. Seguir las instrucciones al pie de la letra.
 
-## Agregar lo siguiente al archivo main.dart
+## Instrucciones
+
+### Agregar lo siguiente al archivo main.dart
   ```dart
   import 'package:flutter/material.dart';
   import 'package:venados_test/principal_screen.dart';`
@@ -284,7 +286,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 }
 ```
 
-## Crear el archivo copa_mx.dart e incluir lo siguiente
+### Crear el archivo copa_mx.dart e incluir lo siguiente
 ```dart
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
@@ -482,7 +484,7 @@ class _CopaMxState extends State<CopaMx> {
 }
 ```
 
-## Crear el archivo ascenso_mx.dart e incluir lo siguiente
+### Crear el archivo ascenso_mx.dart e incluir lo siguiente
 ```dart
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
@@ -648,7 +650,7 @@ class _AscensoMxState extends State<AscensoMx> {
   }
 }
 ```
-## Crear el archivo players.dart e incluir lo siguiente
+### Crear el archivo players.dart e incluir lo siguiente
 ```dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -953,7 +955,7 @@ class _PlayersState extends State<Players> {
 }
 ```
 
-## Crear el archivo statistics.dart e incluir lo siguiente
+### Crear el archivo statistics.dart e incluir lo siguiente
 ```dart
 import 'package:flutter/material.dart';
 import 'package:venados_test/methods/methods.dart';
@@ -1120,7 +1122,7 @@ class _StatisticsState extends State<Statistics> {
 }
 ```
 
-## Crear el archivo methods.dart dentro de un nuevo directorio en la carpeta lib e incluir lo siguiente
+### Crear el archivo methods.dart dentro de un nuevo directorio en la carpeta lib e incluir lo siguiente
 ```dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
