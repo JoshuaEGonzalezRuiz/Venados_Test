@@ -5,7 +5,19 @@ Ejercicio de prueba para DaCodes.
 
 1. Crear un proyecto en blanco de Flutter en el IDE de tu preferencia
 2. Borrar el contenido del archivo main.dart
-3. Seguir las instrucciones al pie de la letra.
+3. Incluir lo siguiente en el pubspec.yaml
+```dart
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  cupertino_icons:
+  flutter_icons:
+  add_2_calendar:
+  intl:
+  http:
+```
+4. Seguir las instrucciones al pie de la letra.
 
 ## Agregar lo siguiente al archivo main.dart
   ```dart
@@ -938,5 +950,239 @@ class _PlayersState extends State<Players> {
   Future<List<dynamic>> _refresh() {
     return method.getGames('Copa MX');
   }
+}
+```
+
+## Crear el archivo statistics.dart e incluir lo siguiente
+```dart
+import 'package:flutter/material.dart';
+import 'package:venados_test/methods/methods.dart';
+
+class Statistics extends StatefulWidget {
+  Statistics({Key key}) : super(key: key);
+  @override
+  _StatisticsState createState() => new _StatisticsState();
+}
+
+class _StatisticsState extends State<Statistics> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  new GlobalKey<RefreshIndicatorState>();
+
+  var method = getData();
+
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<dynamic>>(
+        future: method.getStatistics(),
+        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text('Cargando...',
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center),
+                  CircularProgressIndicator()
+                ],
+              ),
+            );
+          }
+          return Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                color: Colors.grey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(2, 0, 80, 10),
+                      child: Text(
+                        'Tabla General',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(30, 0, 2, 10),
+                      child: Text('JJ',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(2, 0, 2, 10),
+                      child: Text('DG',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(2, 0, 2, 10),
+                      child: Text('PTS',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot == null ? 0 : snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+
+                          String equipo = snapshot.data[index]["team"].toString();
+                          if(equipo.length > 7){
+                            equipo = equipo.replaceRange(8, equipo.length, '');
+                            print(equipo);
+                          }
+
+                          return Column(
+                            children: <Widget>[
+                              Container(
+                                  padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
+                                  decoration: BoxDecoration(color: Colors.green),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        snapshot.data[index]["position"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+
+                                            Container(
+                                              padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                              child: Image.network(
+                                                snapshot.data[index]["image"].toString(),
+                                                height: 50,
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.fromLTRB(2, 0, 0, 0),
+                                              child: Text(
+                                                equipo,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        snapshot.data[index]["games"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        snapshot.data[index]["score_diff"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        snapshot.data[index]["points"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ))
+                            ],
+                          );
+                        }),
+                  )
+              )
+            ],
+          );
+        });
+  }
+}
+```
+
+## Crear el archivo methods.dart dentro de un nuevo directorio en la carpeta lib e incluir lo siguiente
+```dart
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class getData {
+  Future<List<dynamic>> getGames(String liga) async {
+
+    var response = await http.get(
+        Uri.encodeFull("https://venados.dacodes.mx/api/games"),
+        headers: {"Accept": "application/json"});
+
+    Map<String, dynamic> map = json.decode(response.body);
+
+    List<dynamic> data = map["data"]["games"];
+
+    List<dynamic> dataCopa = List<dynamic>();
+
+    switch(liga){
+      case 'Ascenso MX':
+        for(var item in data){
+          if(item["league"] != "Copa MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+      case 'Copa MX':
+        for(var item in data){
+          if(item["league"] != "Ascenso MX"){
+            dataCopa.add(item);
+          }
+        }
+        break;
+    }
+
+    return dataCopa.toList();
+  }
+
+  Future<List<dynamic>> getStatistics() async {
+
+    var response = await http.get(
+        Uri.encodeFull("https://venados.dacodes.mx/api/statistics"),
+        headers: {"Accept": "application/json"});
+
+    Map<String, dynamic> map = json.decode(response.body);
+
+    List<dynamic> data = map["data"]["statistics"];
+
+    return data.toList();
+  }
+
+  Future<List<dynamic>> getPlayers() async {
+
+    var response = await http.get(
+        Uri.encodeFull("https://venados.dacodes.mx/api/players"),
+        headers: {"Accept": "application/json"});
+
+    Map<String, dynamic> map = json.decode(response.body);
+
+    List<dynamic> data = map["data"]["team"]["forwards"];
+
+    return data.toList();
+  }
+
 }
 ```
