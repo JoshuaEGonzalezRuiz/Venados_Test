@@ -9,6 +9,8 @@ Pasos para construir el proyecto:
  1. Crear un proyecto nuevo de Flutter en Android Studio.
 
  2. Eliminar el contenido del archivo main y dejar solo lo siguiente.
+ 
+    import 'package:flutter/material.dart';
 
     void main() => runApp(PrincipalScreen());
 
