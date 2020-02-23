@@ -8,12 +8,12 @@ Ejercicio de prueba para DaCodes.
 3. Seguir las instrucciones al pie de la letra.
 
 ## Agregar lo siguiente al archivo main.dart
+  ```dart
+  import 'package:flutter/material.dart';
+  import 'package:venados_test/principal_screen.dart';`
 
-  `import 'package:flutter/material.dart';`
-  `import 'package:venados_test/principal_screen.dart';`
-
-  `void main() => runApp(PrincipalScreen());`
-
+  void main() => runApp(PrincipalScreen());
+  ```
 ## Crear el archivo principal_screen.dart y agregar lo siguiente
 
 `import 'package:flutter/material.dart';
