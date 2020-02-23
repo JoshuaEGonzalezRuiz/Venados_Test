@@ -1,7 +1,4 @@
-import 'package:add_2_calendar/add_2_calendar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:venados_test/methods/methods.dart';
@@ -19,14 +16,6 @@ class _PlayersState extends State<Players> {
   var method = getData();
 
   Widget build(BuildContext context) {
-    Event event = Event(
-      title: '',
-      description: '',
-      location: '',
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(Duration(days: 1)),
-      allDay: false,
-    );
 
     return FutureBuilder<List<dynamic>>(
           future: method.getPlayers(),

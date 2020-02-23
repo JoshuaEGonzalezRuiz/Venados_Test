@@ -26,7 +26,6 @@ dependencies:
   flutter_icons:
   add_2_calendar:
   intl:
-#  dio:
   http:
 
 dev_dependencies:
