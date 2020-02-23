@@ -12,11 +12,11 @@ Ejercicio de prueba para DaCodes.
   `import 'package:flutter/material.dart';
   import 'package:venados_test/principal_screen.dart';
 
-  void main() => runApp(PrincipalScreen());´
+  void main() => runApp(PrincipalScreen());`
 
 ## Crear el archivo principal_screen.dart y agregar lo siguiente
 
-import 'package:flutter/material.dart';
+`import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:venados_test/players.dart';
@@ -271,4 +271,4 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
     return false;
   }
-}
+}`
