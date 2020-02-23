@@ -6,15 +6,15 @@ Aplicación de prueba para DaCodes
 
 Pasos para construir el proyecto:
 
- 1. Crear un proyecto nuevo de Flutter en Android Studio
+ 1. Crear un proyecto nuevo de Flutter en Android Studio.
 
- 2. Eliminar el contenido del archivo main.dart y dejar solo lo siguiente:
+ 2. Eliminar el contenido del archivo main y dejar solo lo siguiente.
 
     void main() => runApp(PrincipalScreen());
 
- 3. Crear un archivo .dart que se llamará principal_screen
+ 3. Crear un archivo dart que se llamará principal_screen.
 
- 4. Dentro del archivo que se creó anteriormente crear un StatelessWidget con su respectivo StatefulWidget:
+ 4. Dentro del archivo que se creó anteriormente crear un StatelessWidget con su respectivo StatefulWidget.
 
     import 'package:flutter/material.dart';
     import 'package:flutter/services.dart';
@@ -51,9 +51,9 @@ Pasos para construir el proyecto:
       Widget build(BuildContext context) {}
     }
 
- 5. Ahora crear el archivo que contendrá los métodos get, este archivo se llamará methods.dart
+ 5. Ahora crear el archivo que contendrá los métodos get, este archivo se llamará methods.
 
- 6. Dentro de ese archivo escribir lo siguiente:
+ 6. Dentro de ese archivo escribir lo siguiente.
 
     import 'package:http/http.dart' as http;
 
@@ -118,15 +118,15 @@ Pasos para construir el proyecto:
 
     }
 
-    Nota: agregar las siguientes dependencias en el pubsec.yaml:
-    flutter_icons:
-    add_2_calendar:
-    intl:
-    http:
+    Nota: agregar las siguientes dependencias en el pubsec.yaml.
+    flutter_icons
+    add_2_calendar
+    intl
+    http
 
- 7. Ahora, se debe instanciar la clase getData encima del Widget build del principal_screen.dart
+ 7. Ahora, se debe instanciar la clase getData encima del Widget build del principal_screen.
 
- 8. Para crear el navigation drawer se deberá agregar el siguiente código:
+ 8. Para crear el navigation drawer se deberá agregar el siguiente código.
 
     final drawerHeader = UserAccountsDrawerHeader(
           accountName: Text('Jonathan Lee'),
@@ -188,10 +188,9 @@ Pasos para construir el proyecto:
               child: drawerItems,
             ));
 
- 9. Para simular un recicler view se agregará un switch el cual permitirá gestionar el contenido que se mostrará en el body
- principal, esto con la finalidad de simplemente mostrar todo el tiempo una sola vista:
+ 9. Para simular un recicler view se agregará un switch el cual permitirá gestionar el contenido que se mostrará en el body  principal, esto con la finalidad de simplemente mostrar todo el tiempo una sola vista.
 
- Observese que se declara un widget llamado screen, el cual contiene los diferentes casos a mostrar en la pantalla principal.
+    //Observese que se declara un widget llamado screen, el cual contiene los diferentes casos a mostrar en la pantalla principal.
 
     Widget screen (BuildContext context, int option){
       switch(option) {
@@ -313,7 +312,8 @@ Pasos para construir el proyecto:
       }
     }
 
-    Se agrega la clase privada _SliverAppBarDelegate la cual se encarga de redimensionar el TabBar
+    //Se agrega la clase privada _SliverAppBarDelegate la cual se encarga de redimensionar el TabBar.
+
     class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       _SliverAppBarDelegate(this._tabBar);
 
@@ -338,9 +338,9 @@ Pasos para construir el proyecto:
       }
     }
 
- 10. Ahora se crearán los archivos que contendrán la información de los ViewPagers (copa_mx.dart y ascenso_mx.dart).
+ 10. Ahora se crearán los archivos que contendrán la información de los ViewPagers (copa_mx y ascenso_mx).
 
- 11. El contenido del copa_mx.dart será el siguiente:
+ 11. El contenido del archivo copa_mx será el siguiente.
 
     import 'package:add_2_calendar/add_2_calendar.dart';
     import 'package:flutter/material.dart';
@@ -536,7 +536,7 @@ Pasos para construir el proyecto:
       }
     }
 
- 12. El contenido de ascenso_mx.dart será el siguiente:
+ 12. El contenido del archivo ascenso_mx será el siguiente.
 
     import 'package:add_2_calendar/add_2_calendar.dart';
     import 'package:flutter/material.dart';
@@ -702,7 +702,7 @@ Pasos para construir el proyecto:
       }
     }
 
- 13. Se proseguirá con la creación del archivo .dart llamado players y contendrá el siguiente código:
+ 13. Se proseguirá con la creación del archivo dart llamado players y contendrá el siguiente código.
 
     import 'package:flutter/material.dart';
     import 'package:intl/intl.dart';
@@ -1005,7 +1005,7 @@ Pasos para construir el proyecto:
       }
     }
 
- 14. Ahora se creará el último archivo .dart llamado statistics y contendrá el siguiente código:
+ 14. Ahora se creará el último archivo dart llamado statistics y contendrá el siguiente código:
 
     import 'package:flutter/material.dart';
 
