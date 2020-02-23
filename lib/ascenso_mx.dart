@@ -55,12 +55,9 @@ class _AscensoMxState extends State<AscensoMx> {
                   initializeDateFormatting();
                   String fechaE = snapshot.data[index]["datetime"].toString();
                   fechaE = fechaE.replaceRange(10,25,'');
-//                  print(fechaE);
                   DateTime fechaP = DateTime.parse(fechaE);
                   var fechaD = DateFormat('d','es_MX').format(fechaP);
                   var fechaNombreD =  DateFormat('EEE','es_MX').format(fechaP).toUpperCase();
-//                  print(fechaD);
-//                  print(fechaNombreD);
 
                   String equipo = snapshot.data[index]["opponent"].toString();
                   if(equipo.length > 7){

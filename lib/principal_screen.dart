@@ -11,7 +11,6 @@ import 'methods/methods.dart';
 int opcion;
 
 class PrincipalScreen extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +39,6 @@ class _PrincipalScreenPageState extends State<PrincipalScreenPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
